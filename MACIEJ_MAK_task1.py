@@ -116,12 +116,12 @@ for index,batch in enumerate(test.as_numpy_iterator()):
     recall.update_state(y, np.argmax(yhat, axis=1))
 accuracy_result=accuracy.result().numpy()
 precision_result=precision.result().numpy()
-recall_recult=recall.result().numpy()
-F1Score = 2 * (precision_result * recall_recult) / (precision_result + recall_recult)
+recall_result=recall.result().numpy()
+F1Score = 2 * (precision_result * recall_result) / (precision_result + recall_result)
 print('metrics')
 print(f'accuracy: {accuracy_result}')
 print(f'precision: {precision_result}')
-print(f'recall: {recall_recult}')
+print(f'recall: {recall_result}')
 print(f'F1Score : {F1Score}')
 
 #ploting image with predicted and true labels
