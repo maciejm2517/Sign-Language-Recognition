@@ -24,7 +24,7 @@ Pokazywana jest rzeczywista etykieta oraz etykieta przewidziana przez model.
 <h3>Uwagi<h3>
 <ul>
 <li>Model został wytrenowany na 8 epokach, przy większej ilości iteracji model zaczynał uczyć się szumu przez co dokładność nieznacznie spadała</li>
-<li>Model został wytrenowany na dane wejściowe o wymiarach (300,300,3). Obrazy o innych wymiarach są skalowane do postaci (300,300)</li>
+<li>Model został wytrenowany na dane wejściowe o wymiarach (300,300). Obrazy o innych wymiarach są skalowane do tej postaci</li>
 <li>Do pobierania plików z folderów zostały wykorzystane metody z modułu os.path. Umożliwia to poruszanie się po plikach bez specjalizowania systemu plików użytkownika</li>
 <li>Gotowy model można pobrać z linku: https://drive.google.com/file/d/1prAAd1BhDwLMDxx7u9IW6Fzy4Ky6sdoG/view?usp=sharing</li>
 </ul>
