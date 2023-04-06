@@ -26,7 +26,7 @@ data_augmentation = tf.keras.Sequential([
     tf.keras.layers.experimental.preprocessing.RandomFlip("horizontal", 
                                                  input_shape=(IMG_HEIGHT, 
                                                               IMG_WIDTH,
-                                                              3)),
+                                                              RGB)),
     tf.keras.layers.experimental.preprocessing.RandomRotation(0.1),
     tf.keras.layers.experimental.preprocessing.RandomZoom(0.1),
 ])
