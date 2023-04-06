@@ -33,7 +33,6 @@ data_augmentation = tf.keras.Sequential([
 
 #scaling data and making batches iterable
 data=data.map(lambda x,y: (x/255,y))
-data.as_numpy_iterator().next()
 
 #divide data into training, validation and testing
 train_size = int(len(data)*0.8)
