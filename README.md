@@ -17,7 +17,7 @@ Dodatkowo gdy model jest zapisywany lub (jeśli istnieje) jest ładowany z pliku
 <h3>Dokładność i funkcja strat</h3>
 Wykresy pokazują zależności funkcji strat oraz dokładności danych treningowych oraz walidacyjnych w zależności od kolejnych epok
 <h3>Obliczanie metryk</h3>
-Obliczane są metryki dokładności, precyzji, czułości (ang. recall) oraz F1. Metryki są obliczane w kolejnych seriach danych i scalane do jednego wyniku danych.
+Obliczane są metryki dokładności, precyzji, czułości (ang. recall) oraz F1. Metryki są obliczane w kolejnych seriach danych.
 <h3>Wyniki</h3>
 Pokazywane jest 10 losowych obrazków różnych o losowych etykietach.
 Pokazywana jest rzeczywista etykieta oraz etykieta przewidziana przez model.
