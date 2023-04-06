@@ -32,10 +32,10 @@ data_augmentation = tf.keras.Sequential([
     tf.keras.layers.experimental.preprocessing.RandomZoom(0.1),
 ])
 
-#scaling data and making batches iterable
+# scaling data and making batches iterable
 data=data.map(lambda x,y: (x/255,y))
 
-#divide data into training, validation and testing
+# divide data into training, validation and testing
 train_size = int(len(data)*0.8)
 val_size = int(len(data)*0.1)
 test_size = int(len(data)*0.1)
