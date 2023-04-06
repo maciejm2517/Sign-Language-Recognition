@@ -13,7 +13,7 @@ Dane zostają również na dane treningowe, walidacyjne oraz testowe w proporcji
 <h3>Utworzenie modelu</h3>
 Model zostaje utworzony z warstw splotowych - Conv2D, warstw dyskretyzujących - MaxPooling2D, warstw łączących Dense. Dodatkowo do modelu został dodany model odpowiadający za augmentacje danych przez losowe obracanie danych treningowych.
 Model został skompilowany za pomocą optymalizatora RMSprop, funkcji strat SparseCategoricalCrossentropy oraz metryki Accuracy.
-Dodatkowo gdy model jest zapisywany lub (jeśli istnieje) jest ładowany z pliku.
+Dodatkowo model jest zapisywany lub (jeśli istnieje) ładowany z pliku.
 <h3>Dokładność i funkcja strat</h3>
 Wykresy pokazują zależności funkcji strat oraz dokładności danych treningowych oraz walidacyjnych w zależności od kolejnych epok
 <h3>Obliczanie metryk</h3>
