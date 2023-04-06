@@ -14,3 +14,16 @@ Dane zostają również na dane treningowe, walidacyjne oraz testowe w proprcji 
 Model zostaje utworzony z wartstw splotowych - Conv2D(), wartstw dyskretyzujących - MaxPooling2D(), warstw łączących Dense(). Dodatkowo do modelu został dodany model odpowiadający za augmentacje danych przez losowe obracanie danych treningowych.
 Model został skompilowany za pomocą optymalizatora RMSprop(), funkcji strat SparseCategoricalCrossentropy() oraz metryki Accuracy().
 Dodatkowo gdy model jest zapisywany lub (jeśli istnieje) jest ładowany z pliku.
+<h3>Dokładność i funkcja strat</h3>
+Wykresy pokazują zależności funkcji strat oraz dokładności danych treningowych oraz walidacyjnych w zależności od kolejnych epok
+<h3>Obliczanie metryk</h3>
+Obliczane są metryki dokładności, prezycji, czułości (ang. recall) oraz F1. Metryki są obliczane w kolejnych seriach danych i scalane do jednego wyniku danych.
+<h3>Wyniki</h3>
+Pokazywane jest 10 losowych obrazków różnych o losowymch etykietach.
+Pokazywana jest rzeczywista etykieta oraz etykieta przewidziana przez model.
+<h3>Uwagi<h3>
+<ul>
+<li>Do pobierania plików z folderów zostały wykorzystane metody z modułu os.path. Umożliwia to poruszanie się po plikach bez specjalizowania systemu plików użytkownika</li>
+<li>Model został wytrenowany na dane wejściowe o wymiarach (300,300,3). Obrazy o innych wymiarach są skalowane do postaci (300,300)</li>
+<li>Gotowy model można pobrać z linku: </li>
+</ul>
