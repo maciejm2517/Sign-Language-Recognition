@@ -1,4 +1,4 @@
-#import nessesary modules
+# import nessesary modules
 import tensorflow as tf
 import os
 import cv2
@@ -6,8 +6,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 import pickle
+from sklearn.metrics import accuracy_score,precision_score,recall_score
 
-#define constants
+# define constants
 DATA_PATH='data'
 CLASSES=os.listdir(DATA_PATH)
 CLASSES.sort()
@@ -17,11 +18,11 @@ RGB=3
 NUM_CLASSES=len(CLASSES)
 EPOCHS=8
 
-#import data
+# import data
 data=tf.keras.utils.image_dataset_from_directory(DATA_PATH,
                                                  image_size=(IMG_WIDTH,IMG_HEIGHT))
 
-#data augmentation to model
+# data augmentation to model
 data_augmentation = tf.keras.Sequential([
     tf.keras.layers.experimental.preprocessing.RandomFlip("horizontal", 
                                                  input_shape=(IMG_HEIGHT, 
@@ -43,7 +44,7 @@ train = data.take(train_size)
 val = data.skip(train_size).take(val_size)
 test = data.skip(train_size+val_size).take(test_size)
 
-#creating model
+# creating model
 model=tf.keras.Sequential([
     data_augmentation,
     tf.keras.layers.Conv2D(16, (3,3),1, activation='relu'),
@@ -58,13 +59,13 @@ model=tf.keras.Sequential([
     tf.keras.layers.Dense(NUM_CLASSES)    
 ])
 
-#compiling model
+# compiling model
 model.compile(optimizer=tf.keras.optimizers.RMSprop(learning_rate=1e-4),
                loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True), 
                metrics=['accuracy']
                )
 
-#import or training model
+# import or training model
 if os.path.isfile('model.h5'):
     model=tf.keras.models.load_model('model.h5')
     with open('trainHistoryDict', "rb") as file:
@@ -77,7 +78,7 @@ else:
     with open('trainHistoryDict', 'wb') as file:
         pickle.dump(hist, file)
 
-#ploting accuracy and loss in epochs
+# ploting accuracy and loss in epochs
 acc = hist['accuracy']
 val_acc = hist['val_accuracy']
 
@@ -99,32 +100,21 @@ plt.legend(loc='best')
 plt.title('Training and Validation Loss')
 plt.show()
 
-#calculate metrics of model using testing data
-accuracy=tf.keras.metrics.Accuracy()
-precision=tf.keras.metrics.Precision()
-recall=tf.keras.metrics.Recall()
-
+# calculate metrics of model using testing data
 for index,batch in enumerate(test.as_numpy_iterator()): 
     X, y = batch
     yhat = model.predict(X)
-    accuracy.merge_state([accuracy])
-    precision.merge_state([precision])
-    recall.merge_state([recall])
+    accuracy_result=accuracy_score(y, np.argmax(yhat, axis=1))
+    precision_result=precision_score(y, np.argmax(yhat, axis=1),average='micro')
+    recall_result=recall_score(y, np.argmax(yhat, axis=1),average='micro')
+    F1Score = 2 * (precision_result * recall_result) / (precision_result + recall_result)
+    print(f'metrics in batch {index}')
+    print(f'accuracy: {accuracy_result}')
+    print(f'precision: {precision_result}')
+    print(f'recall: {recall_result}')
+    print(f'F1Score : {F1Score}')
 
-    accuracy.update_state(y, np.argmax(yhat, axis=1))
-    precision.update_state(y, np.argmax(yhat, axis=1))
-    recall.update_state(y, np.argmax(yhat, axis=1))
-accuracy_result=accuracy.result().numpy()
-precision_result=precision.result().numpy()
-recall_result=recall.result().numpy()
-F1Score = 2 * (precision_result * recall_result) / (precision_result + recall_result)
-print('metrics')
-print(f'accuracy: {accuracy_result}')
-print(f'precision: {precision_result}')
-print(f'recall: {recall_result}')
-print(f'F1Score : {F1Score}')
-
-#ploting image with predicted and true labels
+# ploting image with predicted and true labels
 for _ in range(10):
     random_class=random.choice(CLASSES)
     random_path=os.path.join(DATA_PATH,random_class)
