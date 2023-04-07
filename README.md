@@ -9,7 +9,7 @@ Dane zostają importowane z folderu "data", który zawiera odpowiednio podfolder
 Do załadowania danych została wykorzystana metoda image_dataset_from_directory() z modułu keras.utils. Pozwala z łatwy sposób importować dane, przeskalować na wymagane wymiary oraz podzielić na partie (ang. batches).
 <h3>Wstępne przetwarzanie danych</h3>
 Dane zostają podzielone przez liczbę 255 odpowiadającą maksymalną wartością z 8 bitowej przestrzeni RGB.
-Dane zostają również na dane treningowe, walidacyjne oraz testowe w proporcji 8:1:1
+Dane zostają również na podzielone dane treningowe, walidacyjne oraz testowe w proporcji 8:1:1
 <h3>Utworzenie modelu</h3>
 Model zostaje utworzony z warstw splotowych - Conv2D, warstw dyskretyzujących - MaxPooling2D, warstw łączących Dense. Dodatkowo do modelu został dodany model odpowiadający za augmentacje danych przez losowe obracanie danych treningowych.
 Model został skompilowany za pomocą optymalizatora RMSprop, funkcji strat SparseCategoricalCrossentropy oraz metryki Accuracy.
