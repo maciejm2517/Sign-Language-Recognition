@@ -16,7 +16,7 @@ IMG_WIDTH=300
 IMG_HEIGHT=300
 RGB=3
 NUM_CLASSES=len(CLASSES)
-EPOCHS=8
+EPOCHS=4
 
 # import data
 data=tf.keras.utils.image_dataset_from_directory(DATA_PATH,
@@ -46,7 +46,7 @@ test = data.skip(train_size+val_size).take(test_size)
 
 # creating model
 model=tf.keras.Sequential([
-    data_augmentation,
+    #data_augmentation,
     tf.keras.layers.Conv2D(16, (3,3),1, activation='relu'),
     tf.keras.layers.MaxPooling2D(),
 
